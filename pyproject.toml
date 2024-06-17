@@ -1,0 +1,18 @@
+[build-system]
+requires = [ "poetry-core",]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "sigkan" 
+version = "0.1.0" 
+description = "Path Signature-Weighted Kolmogorov-Arnold Networks for Time Series"
+authors = [ "Rémi Genet", "Hugo Inzirillo"]  
+readme = "README.md"  
+packages = [{include = "sigkan"}]  
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0" 
+numpy = ">=1.2,<2"
+tensorflow = ">=2.14,<3" #Possibly others, not tested yet 
+tkan = ">=0.2.3,<0.3.0"
+iisignature_tensorflow_2 = ">=0.1.0,<0.2.0"
