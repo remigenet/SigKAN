@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Layer, Dense, Add, LayerNormalization, Multiply, Dropout
-from tkan import KANLinear
+from sigkan import KANLinear
+
 
 class AddAndNorm(Layer):
     def __init__(self, **kwargs):
@@ -38,21 +39,22 @@ class Gate(Layer):
 
 
 class GRKAN(Layer):
-    def __init__(self, hidden_layer_size, output_size=None, activation = None, dropout = 0.1, **kwargs):
+    def __init__(self, hidden_layer_size, output_size=None, activation = None, dropout = 0.1, use_bias = False, **kwargs):
         super(GRKAN, self).__init__(**kwargs)
         self.hidden_layer_size = hidden_layer_size
         self.output_size = output_size
         self.activation = tf.keras.activations.get(activation) if activation is not None else None
         self.dropout = Dropout(dropout)
         self.dropout_value = dropout
+        self.use_bias = use_bias
 
     def build(self, input_shape):
         if self.output_size is None:
             self.output_size = self.hidden_layer_size
         self.skip_layer = Dense(self.output_size)
         
-        self.hidden_layer_1 = KANLinear(self.hidden_layer_size, base_activation='elu', dropout = self.dropout_value)
-        self.hidden_layer_2 = KANLinear(self.hidden_layer_size, dropout = self.dropout_value)
+        self.hidden_layer_1 = KANLinear(self.hidden_layer_size, base_activation='elu', dropout = self.dropout_value, use_bias = self.use_bias)
+        self.hidden_layer_2 = KANLinear(self.hidden_layer_size, dropout = self.dropout_value, use_bias = self.use_bias)
         self.gate_layer = Gate(self.output_size)
         self.add_and_norm_layer = AddAndNorm()
         super(GRKAN, self).build(input_shape)

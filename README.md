@@ -1,4 +1,20 @@
-# REPONAME
+# SigKAN: Path Signature-Weighted Kolmogorov-Arnold Networks for Time Series
+
+This folder includes the original code implemented for the paper of the same name.
+
+The SigKAN is a novel layer that combines the power of path signature and Kolmogorov-Arnold Networks.
+
+The idea behing is to use a learnable path signature that is transformed in weights to the KAN layer.
+
+The Signature is passed through a GRKAN (Gated Residual KAN unit) that is a modified GRN where some Dense layers are replaced by KAN layers.
+
+The signature are computed using [iisignature_tensorflow_2](https://github.com/remigenet/iisignature-tensorflow-2/tree/main) a lightweight wrapper over the [iisignature library](https://github.com/bottler/iisignature/tree/master) to create tensorflow 2.x compatible layers for signature function with backward propagation of the gradient.
+
+The code is implemented in tensorflow 2.x and implemnts a custom layer for the SigKAN, that takes an input tensor of shape (baatch_size, time_steps, features) and returns a tensor of shape (batch_size, time_steps, units). The layers can thus be stacked if wanted, however this is not recommended for performances reasons as the iisignature_tensorflow_2 library do not implement GPU acceleration, making made model not XLA compatible.
+
+It is thus important to specify that jit_compile is False in the model.compile() function.
+
+The code is provided as is and is not specially maintained.
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 

@@ -3,9 +3,7 @@ from tensorflow.keras.layers import Layer, Dense, Dropout
 
 import iisignature_tensorflow_2 as ist
 
-from tkan import KANLinear
-
-from sigkan import GRKAN, GRN
+from sigkan import KANLinear, GRKAN, GRN
 
 class SigKAN(Layer):
     def __init__(self, unit, sig_level, dropout = 0., **kwargs):
@@ -13,7 +11,7 @@ class SigKAN(Layer):
         self.unit = unit
         self.sig_level = sig_level
         self.sig_layer = ist.SigLayer(self.sig_level)
-        self.kan_layer = KANLinear(unit, dropout = dropout)
+        self.kan_layer = KANLinear(unit, dropout = dropout, use_bias = False)
         self.sig_to_weight = GRKAN(unit, activation = 'softmax', dropout = dropout)
         self.dropout = Dropout(dropout)
 
@@ -40,7 +38,7 @@ class SigDense(Layer):
         self.unit = unit
         self.sig_level = sig_level
         self.sig_layer = ist.SigLayer(self.sig_level)
-        self.dense_layer = Dense(unit, dropout = dropout)
+        self.dense_layer = Dense(unit)
         self.sig_to_weight = GRN(unit, activation = 'softmax', dropout = dropout)
         self.dropout = Dropout(dropout)
 
