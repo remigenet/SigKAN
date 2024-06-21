@@ -11,7 +11,7 @@ class SigKAN(Layer):
         self.unit = unit
         self.sig_level = sig_level
         self.sig_layer = ist.SigLayer(self.sig_level)
-        self.kan_layer = KANLinear(unit, dropout = dropout, use_bias = False)
+        self.kan_layer = KANLinear(unit, dropout = dropout, use_bias = False, use_layernorm = False)
         self.sig_to_weight = GRKAN(unit, activation = 'softmax', dropout = dropout)
         self.dropout = Dropout(dropout)
 
@@ -58,3 +58,4 @@ class SigDense(Layer):
         dense_out = self.dense_layer(inputs)
         dense_out = self.dropout(dense_out)
         return dense_out * weights[:,tf.newaxis,:]
+

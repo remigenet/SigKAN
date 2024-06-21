@@ -1,7 +1,8 @@
+
 import tensorflow as tf
 from tensorflow.keras.layers import Layer, Dense, Add, LayerNormalization, Multiply, Dropout
-from sigkan import KANLinear
 
+from sigkan import KANLinear
 
 class AddAndNorm(Layer):
     def __init__(self, **kwargs):
@@ -53,8 +54,8 @@ class GRKAN(Layer):
             self.output_size = self.hidden_layer_size
         self.skip_layer = Dense(self.output_size)
         
-        self.hidden_layer_1 = KANLinear(self.hidden_layer_size, base_activation='elu', dropout = self.dropout_value, use_bias = self.use_bias)
-        self.hidden_layer_2 = KANLinear(self.hidden_layer_size, dropout = self.dropout_value, use_bias = self.use_bias)
+        self.hidden_layer_1 = KANLinear(self.hidden_layer_size, base_activation='elu', dropout = self.dropout_value, use_bias = self.use_bias, use_layernorm=False)
+        self.hidden_layer_2 = KANLinear(self.hidden_layer_size, dropout = self.dropout_value, use_bias = self.use_bias, use_layernorm=False)
         self.gate_layer = Gate(self.output_size)
         self.add_and_norm_layer = AddAndNorm()
         super(GRKAN, self).build(input_shape)

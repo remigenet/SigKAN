@@ -32,6 +32,7 @@ class GridInitializer(Initializer):
             "spline_order": self.spline_order
         }
 
+
 class KANLinear(Layer):
     """Custom Keras layer that implements Kernel Additive Networks (KAN) with B-spline transformations.
 
