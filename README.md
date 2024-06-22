@@ -14,6 +14,24 @@ The code is implemented in tensorflow 2.x and implemnts a custom layer for the S
 
 It is thus important to specify that jit_compile is False in the model.compile() function.
 
+The KAN part implementation has been inspired from [efficient_kan](https://github.com/Blealtan/efficient-kan) and works similarly to it, thus not exactly like the [original implementation](https://github.com/KindXiaoming/pykan).
+
+The SigKAN is a keras layers and can be used as any other keras layer, for example:
+
+```python
+import tensorflow as tf
+from sigkan import SigKAN
+model = Sequential([
+    Input(shape=X_train.shape[1:]),
+    SigKAN(100, 2, dropout = 0.), # 100 units, signature of order 2, takes an input shape (batch, sequence, features) and returns a tensor of shape (batch, sequence, 100)
+    Flatten(),
+    Dense(100, 'relu'),
+    Dense(units=n_ahead, activation='linear')
+])
+```
+
+A more complete example is provided in a notebook in the example folder.
+
 The code is provided as is and is not specially maintained.
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
