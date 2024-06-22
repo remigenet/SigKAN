@@ -4,6 +4,8 @@
 
 This folder includes the original code implemented for the paper of the same name.
 
+A pypi package is available at [pypi](https://pypi.org/project/sigkan/)
+
 The SigKAN is a novel layer that combines the power of path signature and Kolmogorov-Arnold Networks.
 
 The idea behing is to use a learnable path signature that is transformed in weights to the KAN layer.
