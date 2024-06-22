@@ -1,5 +1,7 @@
 # SigKAN: Path Signature-Weighted Kolmogorov-Arnold Networks for Time Series
 
+![TKAN representation](image/SigKAN.drawio.png)
+
 This folder includes the original code implemented for the paper of the same name.
 
 The SigKAN is a novel layer that combines the power of path signature and Kolmogorov-Arnold Networks.
