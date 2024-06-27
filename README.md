@@ -41,7 +41,7 @@ The code is provided as is and is not specially maintained.
 Please cite our work if you use this repo:
 
 ```
-@misc{bresson2024kagnn,
+@misc{inzirillogenetsigkan,
       title={SigKAN: Signature-Weighted Kolmogorov-Arnold Networks for Time Series}, 
       author={Hugo Inzirillo, Remi Genet},
       year={2024},
