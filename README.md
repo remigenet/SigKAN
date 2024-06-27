@@ -2,7 +2,7 @@
 
 ![TKAN representation](image/SigKAN.drawio.png)
 
-This folder includes the original code implemented for the paper of the same name.
+This folder includes the original code implemented for the [paper of the same name](https://arxiv.org/abs/2406.17890).
 
 A pypi package is available at [pypi](https://pypi.org/project/sigkan/)
 
@@ -37,6 +37,20 @@ model = Sequential([
 A more complete example is provided in a notebook in the example folder.
 
 The code is provided as is and is not specially maintained.
+
+Please cite our work if you use this repo:
+
+```
+@misc{bresson2024kagnn,
+      title={SigKAN: Signature-Weighted Kolmogorov-Arnold Networks for Time Series}, 
+      author={Hugo Inzirillo, Remi Genet},
+      year={2024},
+      eprint={2406.17890},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2406.17890}, 
+}
+```
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
