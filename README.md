@@ -1,6 +1,6 @@
-# SigKAN: Path Signature-Weighted Kolmogorov-Arnold Networks for Time Series
+# SigKAN: Signature-Weighted Kolmogorov-Arnold Networks for Time Series
 
-![TKAN representation](image/SigKAN.drawio.png)
+![SIGKAN representation](image/SigKAN.drawio.png)
 
 This folder includes the original code implemented for the [paper of the same name](https://arxiv.org/abs/2406.17890).
 
@@ -41,14 +41,11 @@ The code is provided as is and is not specially maintained.
 Please cite our work if you use this repo:
 
 ```
-@misc{inzirillogenetsigkan,
-      title={SigKAN: Signature-Weighted Kolmogorov-Arnold Networks for Time Series}, 
-      author={Hugo Inzirillo, Remi Genet},
-      year={2024},
-      eprint={2406.17890},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2406.17890}, 
+@article{inzirillo2024sigkan,
+  title={SigKAN: Signature-Weighted Kolmogorov-Arnold Networks for Time Series},
+  author={Inzirillo, Hugo and Genet, Remi},
+  journal={arXiv preprint arXiv:2406.17890},
+  year={2024}
 }
 ```
 
