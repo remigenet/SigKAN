@@ -1,8 +1,7 @@
+import keras
+from keras.layers import Layer, Dense, Add, LayerNormalization, Multiply, Dropout
 
-import tensorflow as tf
-from tensorflow.keras.layers import Layer, Dense, Add, LayerNormalization, Multiply, Dropout
-
-from sigkan import KANLinear
+from keras_efficient_kan import KANLinear
 
 class AddAndNorm(Layer):
     def __init__(self, **kwargs):
@@ -44,7 +43,7 @@ class GRKAN(Layer):
         super(GRKAN, self).__init__(**kwargs)
         self.hidden_layer_size = hidden_layer_size
         self.output_size = output_size
-        self.activation = tf.keras.activations.get(activation) if activation is not None else None
+        self.activation = keras.activations.get(activation) if activation is not None else None
         self.dropout = Dropout(dropout)
         self.dropout_value = dropout
         self.use_bias = use_bias
@@ -84,7 +83,7 @@ class GRN(Layer):
         super(GRN, self).__init__(**kwargs)
         self.hidden_layer_size = hidden_layer_size
         self.output_size = output_size
-        self.activation = tf.keras.activations.get(activation) if activation is not None else None
+        self.activation = keras.activations.get(activation) if activation is not None else None
         self.dropout = Dropout(dropout)
         self.dropout_value = dropout
 

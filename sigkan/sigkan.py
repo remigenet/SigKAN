@@ -1,16 +1,17 @@
-import tensorflow as tf
-from tensorflow.keras.layers import Layer, Dense, Dropout
+import keras
+from keras.layers import Layer, Dense, Dropout
 
-import iisignature_tensorflow_2 as ist
+from keras_efficient_kan import KANLinear
+from keras_sig import SigLayer
 
-from sigkan import KANLinear, GRKAN, GRN
+from sigkan import GRKAN, GRN
 
 class SigKAN(Layer):
     def __init__(self, unit, sig_level, dropout = 0., **kwargs):
         super().__init__(**kwargs)
         self.unit = unit
         self.sig_level = sig_level
-        self.sig_layer = ist.SigLayer(self.sig_level)
+        self.sig_layer = SigLayer(self.sig_level)
         self.kan_layer = KANLinear(unit, dropout = dropout, use_bias = False, use_layernorm = False)
         self.sig_to_weight = GRKAN(unit, activation = 'softmax', dropout = dropout)
         self.dropout = Dropout(dropout)
@@ -30,14 +31,14 @@ class SigKAN(Layer):
         weights = self.sig_to_weight(sig)
         kan_out = self.kan_layer(inputs)
         kan_out = self.dropout(kan_out)
-        return kan_out * weights[:,tf.newaxis,:]
+        return kan_out * keras.ops.expand_dims(weights, axis=1)
 
 class SigDense(Layer):
     def __init__(self, unit, sig_level, dropout = 0., **kwargs):
         super().__init__(**kwargs)
         self.unit = unit
         self.sig_level = sig_level
-        self.sig_layer = ist.SigLayer(self.sig_level)
+        self.sig_layer = SigLayer(self.sig_level)
         self.dense_layer = Dense(unit)
         self.sig_to_weight = GRN(unit, activation = 'softmax', dropout = dropout)
         self.dropout = Dropout(dropout)
@@ -57,5 +58,5 @@ class SigDense(Layer):
         weights = self.sig_to_weight(sig)
         dense_out = self.dense_layer(inputs)
         dense_out = self.dropout(dense_out)
-        return dense_out * weights[:,tf.newaxis,:]
+        return dense_out * keras.ops.expand_dims(weights, axis=1)
 

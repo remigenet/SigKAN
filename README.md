@@ -1,6 +1,6 @@
 # SigKAN: Path Signature-Weighted Kolmogorov-Arnold Networks for Time Series
 
-![TKAN representation](image/SigKAN.drawio.png)
+![SigKAN representation](image/SigKAN.drawio.png)
 
 This folder includes the original code implemented for the paper of the same name.
 
@@ -12,11 +12,11 @@ The idea behing is to use a learnable path signature that is transformed in weig
 
 The Signature is passed through a GRKAN (Gated Residual KAN unit) that is a modified GRN where some Dense layers are replaced by KAN layers.
 
-The signature are computed using [iisignature_tensorflow_2](https://github.com/remigenet/iisignature-tensorflow-2/tree/main) a lightweight wrapper over the [iisignature library](https://github.com/bottler/iisignature/tree/master) to create tensorflow 2.x compatible layers for signature function with backward propagation of the gradient.
+New in version 0.2.0:
 
-The code is implemented in tensorflow 2.x and implemnts a custom layer for the SigKAN, that takes an input tensor of shape (baatch_size, time_steps, features) and returns a tensor of shape (batch_size, time_steps, units). The layers can thus be stacked if wanted, however this is not recommended for performances reasons as the iisignature_tensorflow_2 library do not implement GPU acceleration, making made model not XLA compatible.
+The signature is now computed using [keras_sig](https://github.com/remigenet/keras_sig) instead of [iisignature_tensorflow_2](https://github.com/remigenet/iisignature-tensorflow-2/) that is a keras implementation of the signature based on [signatory](https://github.com/patrick-kidger/signatory) and [signax](https://github.com/anh-tong/signax/). Keras_sig being in pure keras3 the package is compatible and tested with all keras backend (tensorflow2, jax and torch). However, we recommend strongly to use jax as backend as it is the most efficient for this task. 
 
-It is thus important to specify that jit_compile is False in the model.compile() function.
+The computation of the signature also profits from an optimization for GPU computation inside keras_sig. 
 
 The KAN part implementation has been inspired from [efficient_kan](https://github.com/Blealtan/efficient-kan) and works similarly to it, thus not exactly like the [original implementation](https://github.com/KindXiaoming/pykan).
 
