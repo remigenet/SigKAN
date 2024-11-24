@@ -1,8 +1,8 @@
-# SigKAN: Path Signature-Weighted Kolmogorov-Arnold Networks for Time Series
+# SigKAN: Signature-Weighted Kolmogorov-Arnold Networks for Time Series
 
-![SigKAN representation](image/SigKAN.drawio.png)
+![SIGKAN representation](image/SigKAN.drawio.png)
 
-This folder includes the original code implemented for the paper of the same name.
+This folder includes the original code implemented for the [paper of the same name](https://arxiv.org/abs/2406.17890).
 
 A pypi package is available at [pypi](https://pypi.org/project/sigkan/)
 
@@ -37,6 +37,17 @@ model = Sequential([
 A more complete example is provided in a notebook in the example folder.
 
 The code is provided as is and is not specially maintained.
+
+Please cite our work if you use this repo:
+
+```
+@article{inzirillo2024sigkan,
+  title={SigKAN: Signature-Weighted Kolmogorov-Arnold Networks for Time Series},
+  author={Inzirillo, Hugo and Genet, Remi},
+  journal={arXiv preprint arXiv:2406.17890},
+  year={2024}
+}
+```
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
